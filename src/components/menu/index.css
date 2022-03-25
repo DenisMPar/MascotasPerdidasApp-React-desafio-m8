@@ -1,0 +1,32 @@
+.root {
+  height: 100vh;
+  padding: 45px 30px;
+  background-color: #42a9d4;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+}
+.containerCloseButton {
+  height: 20px;
+  width: 20px;
+  justify-self: end;
+  align-self: start;
+}
+.containerButtons {
+  margin: 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  align-self: center;
+}
+.containerLogin {
+  min-width: 100px;
+  align-self: center;
+  justify-self: center;
+}
+.containerCloseSession {
+  justify-content: center;
+}
+.userEmail {
+  font-size: 16px;
+  color: white;
+}

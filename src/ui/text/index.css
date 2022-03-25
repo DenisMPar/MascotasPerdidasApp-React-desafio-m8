@@ -1,0 +1,16 @@
+.title {
+  font-size: 40px;
+}
+.subtitle {
+  font-weight: normal;
+  font-size: 24px;
+}
+.text {
+  font-size: 16px;
+}
+.bold {
+  font-weight: bold;
+}
+.noMargin {
+  margin: 0;
+}

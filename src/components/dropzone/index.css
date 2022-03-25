@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.containerImg {
+  min-height: 142px;
+  border: solid 2px black;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
