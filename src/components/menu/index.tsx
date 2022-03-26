@@ -8,7 +8,7 @@ import { menuRedirectState, UserState } from "atoms";
 
 export function MainMenu(props) {
   const token = localStorage.getItem("auth_token");
-  const userData = useRecoilValue(UserState);
+  const [userData, setUserData] = useRecoilState(UserState);
   let navigate = useNavigate();
   const [menuRedirect, setMenuRedirect] = useRecoilState(menuRedirectState);
 
@@ -25,6 +25,14 @@ export function MainMenu(props) {
       navigate("/login");
       props.onClick();
     }
+  }
+  //funcion que cierra la sesión
+  function handleCloseSession() {
+    localStorage.removeItem("auth_token");
+    setUserData({
+      location: userData.location,
+    });
+    navigate("/");
   }
   return (
     <div className={css.root}>
@@ -53,12 +61,7 @@ export function MainMenu(props) {
           token ? (
             <div className={css.containerCloseSession}>
               <h5 className={css.userEmail}>{userData?.email}</h5>
-              <MainButton
-                onClick={() => {
-                  props.onClick();
-                }}
-                color="cancel"
-              >
+              <MainButton onClick={handleCloseSession} color="cancel">
                 Cerrar Sesión
               </MainButton>
             </div>

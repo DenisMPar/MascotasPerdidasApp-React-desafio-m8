@@ -5,7 +5,3 @@ body {
   margin: 0px;
   font-family: "roboto";
 }
-.mapboxgl-map {
-  border: solid 2px black;
-  display: none;
-}

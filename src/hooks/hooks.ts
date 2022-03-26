@@ -22,3 +22,18 @@ export function useAuth() {
     login,
   };
 }
+export function useSendPetReport() {
+  async function sendReport(email, pass) {
+    const res = await auth(email, pass);
+    if (res.token) {
+      localStorage.setItem("auth_token", res.token);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  return {
+    sendReport,
+  };
+}

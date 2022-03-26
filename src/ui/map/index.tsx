@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-
 import css from "./index.css";
 import { MyText } from "ui/text";
 import { useRecoilValue } from "recoil";
@@ -21,22 +20,18 @@ function MapboxSearch(props: MapBoxSearchProps) {
   const petData = useRecoilValue(petState);
   const [query, setQuery] = useState("");
   const [zone, setZone] = useState("");
+  //coordenadas por defecto del mapa
+  //lo seteo any porque center map se queja
+  const [coords, setCoords] = useState([-58.38162, -34.60376] as any);
 
-  //si hay data de la mascota la guardo en el query
+  //si hay data de la mascota la guardo en el query y en las coords
   //esto sirve para mostrar la data anterior cuando quiero editar la mascota
   useEffect(() => {
     if (petData) {
       setQuery(petData.zone);
+      setCoords([petData?.lng, petData?.lat]);
     }
   }, []);
-  //coordenadas por defecto del mapa
-  let initialCoords: any = [-58.38162, -34.60376];
-
-  //si hay data de la mascota seteo las coordenadas donde se denuncio a la mascota
-  if (petData) {
-    initialCoords = [petData?.lng, petData?.lat];
-  }
-  const [coords, setCoords] = useState(initialCoords);
 
   async function search() {
     const data = await fetch(
@@ -120,5 +115,6 @@ function MapboxSearch(props: MapBoxSearchProps) {
     </div>
   );
 }
+//
 
 export { MapboxSearch };

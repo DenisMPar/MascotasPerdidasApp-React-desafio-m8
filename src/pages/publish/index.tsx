@@ -69,7 +69,7 @@ export function Publish() {
       <form action="" className={css.form} onSubmit={submitHandler}>
         <MyTextInput label="NOMBRE" type="text" name="name" />
         <DropZone></DropZone>
-        <MapboxSearch onChange={handleMapboxChange}></MapboxSearch>
+        <MapboxSearch></MapboxSearch>
         <MainButton color="accept" className={css.button} type="submit">
           Reportar como perdido
         </MainButton>
