@@ -5,6 +5,7 @@ import css from "./index.css";
 import { MyText } from "ui/text";
 import { useRecoilValue } from "recoil";
 import { petState } from "atoms";
+import "dotenv/config";
 
 const mapToken = process.env.MAPBOX_TOKEN;
 
