@@ -5,12 +5,10 @@ import css from "./index.css";
 import { MyText } from "ui/text";
 import { useRecoilValue } from "recoil";
 import { petState } from "atoms";
-import "dotenv/config";
-
-const mapToken = process.env.MAPBOX_TOKEN;
 
 const Map = ReactMapboxGl({
-  accessToken: mapToken,
+  accessToken:
+    "pk.eyJ1IjoiZGVuaXNwYXJhZGEiLCJhIjoiY2t2cmhwbjZlMDM5czJ2cWlyczZoODg4cSJ9.6obRc3i_TK7qdx_A6_y-qg",
 });
 
 type MapBoxSearchProps = {
