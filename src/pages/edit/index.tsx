@@ -10,24 +10,26 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { MyText } from "ui/text";
 import { MyTextInput } from "ui/text-field";
 import css from "./index.css";
+import { useEditPet } from "hooks/hooks";
 
 export function Edit() {
   const token = localStorage.getItem("auth_token");
   const petData = useRecoilValue(petState);
   const [formData, setFormData] = useState(null);
   const [pictureUrl, setPictureUrl] = useRecoilState(pictureUrlState);
+  const { editPet } = useEditPet();
   const navigate = useNavigate();
 
   //seteo la url de la foto de la mascota
   useEffect(() => {
-    setPictureUrl(petData.pictureUrl);
+    setPictureUrl(petData?.pictureUrl);
   }, []);
   //si el user edita la foto cargo la nueva url
   useEffect(() => {
     setFormData({ ...formData, pictureUrl });
   }, [pictureUrl]);
 
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
     const name = e.target.name.value;
 
@@ -47,14 +49,13 @@ export function Edit() {
       allData.pictureUrl = formData.pictureUrl;
     }
     //hago la llamada a la api para modifcar la mascota
-    editUserPet({ body: allData, token, id: petData.id }).then((res) => {
-      if (res[0] === 1) {
-        console.log("mascota modificada");
-        navigate("/user/pets");
-      } else {
-        alert("ups algo salio mal, intenta mas tarde");
-      }
-    });
+    const res = await editPet({ body: allData, token, id: petData.id });
+    if (res) {
+      alert("mascota modificada");
+      navigate("/user/pets");
+    } else {
+      alert("ups algo salio mal, intenta mas tarde");
+    }
   }
   //guardo los datos provenientes del mapbox
   function handleMapboxChange(data) {
@@ -92,36 +93,43 @@ export function Edit() {
 
   return (
     <div className={css.root}>
-      <MyText type="title">Editar mascota perdida</MyText>
-      <form action="" className={css.form} onSubmit={submitHandler}>
-        <MyTextInput
-          label="NOMBRE"
-          type="text"
-          name="name"
-          value={petData?.name}
-        />
-        <DropZone imgUrl={petData?.pictureUrl}></DropZone>
-        <MapboxSearch onChange={handleMapboxChange}></MapboxSearch>
-        <MainButton className={css.button} type="submit">
-          Guardar
-        </MainButton>
-        <MainButton
-          color="accept"
-          className={css.button}
-          type="button"
-          onClick={handleReport}
-        >
-          Reportar como encontrado
-        </MainButton>
-        <MainButton
-          color="cancel"
-          className={css.button}
-          type="button"
-          onClick={handleUnpublish}
-        >
-          Despublicar
-        </MainButton>
-      </form>
+      <div className={css.containerTitle}>
+        <MyText type="title">Editar mascota perdida</MyText>
+      </div>
+      <div className={css.containerForm}>
+        <form action="" className={css.form} onSubmit={submitHandler}>
+          <MyTextInput
+            label="NOMBRE"
+            type="text"
+            name="name"
+            value={petData?.name}
+          />
+          <DropZone imgUrl={petData?.pictureUrl}></DropZone>
+          <MapboxSearch
+            type="edit"
+            onChange={handleMapboxChange}
+          ></MapboxSearch>
+          <MainButton className={css.button} type="submit">
+            Guardar
+          </MainButton>
+          <MainButton
+            color="accept"
+            className={css.button}
+            type="button"
+            onClick={handleReport}
+          >
+            Reportar como encontrado
+          </MainButton>
+          <MainButton
+            color="cancel"
+            className={css.button}
+            type="button"
+            onClick={handleUnpublish}
+          >
+            Despublicar
+          </MainButton>
+        </form>
+      </div>
     </div>
   );
 }

@@ -8,8 +8,6 @@ import { UserData } from "pages/user-data";
 import { UserPets } from "pages/user-pets";
 import { Publish } from "pages/publish";
 import { Edit } from "pages/edit";
-import { Form } from "pages/form";
-import { MapboxSeach } from "pages/prueba";
 
 function AppRoutes() {
   return (
@@ -22,7 +20,6 @@ function AppRoutes() {
         <Route path="/user/pets" element={<UserPets />} />
         <Route path="/user/pets/publish" element={<Publish />} />
         <Route path="/user/pets/edit" element={<Edit />} />
-        <Route path="/test" element={<MapboxSeach />} />
       </Route>
     </Routes>
   );

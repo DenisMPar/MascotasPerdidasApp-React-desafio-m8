@@ -21,14 +21,14 @@ export function Layout() {
     return <MainMenu onClick={setFlag}></MainMenu>;
   } else {
     return (
-      <div className="layout">
+      <div className={css.root}>
         <header className={css.header}>
           <Link to="/">
             <div className={css.containerLogo}>
               <img src={img} className={css.logo}></img>
             </div>
           </Link>
-          <div>
+          <div className={css.containerMenuButton}>
             <MainButton onClick={handleClick}>Menu</MainButton>
           </div>
         </header>

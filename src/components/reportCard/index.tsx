@@ -1,6 +1,5 @@
 import { LoaderComp } from "components/loader";
-import { usePetData } from "hooks/hooks";
-import { sendPetReport } from "lib/api";
+import { usePetData, useSendPetReport } from "hooks/hooks";
 import React, { useState } from "react";
 import { MainButton } from "ui/buttons";
 import { MyText } from "ui/text";
@@ -13,8 +12,9 @@ export function ReportCard(props) {
   //flag que sirve para mostrar el componente loader
   const [loader, setLoader] = useState(false);
   const petData = usePetData();
+  const { sendReport } = useSendPetReport();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     setLoader(true);
     e.preventDefault();
     const target = e.target;
@@ -34,15 +34,14 @@ export function ReportCard(props) {
     //si todas las key tienen valores puedo enviar el reporte
     //si no mando la alerta de "todos los campos son obligatorios"
     if (checked) {
-      sendPetReport(report).then((res) => {
-        if (res.message == "email sent") {
-          alert("reporte enviado");
-          props.setTrigger(false);
-        } else {
-          alert("algo salio mal, intenta mas tarde");
-        }
-        setLoader(false);
-      });
+      const res = await sendReport(report);
+      if (res) {
+        alert("reporte enviado");
+        props.setTrigger(false);
+      } else {
+        alert("algo salio mal, intenta mas tarde");
+      }
+      setLoader(false);
     } else {
       alert("todos los campos son obligatorios");
       setLoader(false);
@@ -51,38 +50,44 @@ export function ReportCard(props) {
   //trigger es un flag para ocultar o mostrar la tarjeta de reporte
   return props.trigger ? (
     <div className={css.root}>
-      {loader ? (
-        <LoaderComp></LoaderComp>
-      ) : (
-        <div>
-          <div
-            className={css.containerCloseButton}
-            onClick={() => props.setTrigger(false)}
-          >
-            <img src={closeButtonImg} alt="" />
-          </div>
+      {
+        //loader es un flag para mostrar el componente de carga
+        loader ? (
+          <LoaderComp></LoaderComp>
+        ) : (
           <div>
-            <MyText type="title"> Reportar info de bobby</MyText>
-          </div>
-
-          <form className={css.reportForm} onSubmit={handleSubmit}>
-            <MyTextInput
-              label="Tu nombre"
-              type="text"
-              name="name"
-            ></MyTextInput>
-            <MyTextInput
-              label="Tu teléfono"
-              type="text"
-              name="phone"
-            ></MyTextInput>
-            <div className={css.textArea}>
-              <MyTextArea label="¿Dónde lo viste?" name="message"></MyTextArea>
+            <div
+              className={css.containerCloseButton}
+              onClick={() => props.setTrigger(false)}
+            >
+              <img src={closeButtonImg} alt="" />
             </div>
-            <MainButton color="accept">Enviar</MainButton>
-          </form>
-        </div>
-      )}
+            <div>
+              <MyText type="title"> Reportar info de {petData.name}</MyText>
+            </div>
+
+            <form className={css.reportForm} onSubmit={handleSubmit}>
+              <MyTextInput
+                label="Tu nombre"
+                type="text"
+                name="name"
+              ></MyTextInput>
+              <MyTextInput
+                label="Tu teléfono"
+                type="text"
+                name="phone"
+              ></MyTextInput>
+              <div className={css.textArea}>
+                <MyTextArea
+                  label="¿Dónde lo viste?"
+                  name="message"
+                ></MyTextArea>
+              </div>
+              <MainButton color="accept">Enviar</MainButton>
+            </form>
+          </div>
+        )
+      }
     </div>
   ) : null;
 }

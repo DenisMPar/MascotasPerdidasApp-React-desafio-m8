@@ -1,6 +1,23 @@
 .root {
   padding: 20px;
+  max-width: 730px;
+  margin: 0 auto;
 }
+.containerTitle {
+  text-align: center;
+  padding: 35px 0px;
+}
+@media (min-width: 769px) {
+  .containerTitle {
+    padding: 50px 0px;
+    text-align: center;
+  }
+}
+.containerForm {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .form {
   display: flex;
   flex-direction: column;

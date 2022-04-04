@@ -9,7 +9,9 @@ export function Login() {
       <div className={css.containerTitle}>
         <MyText type="title">Ingresar</MyText>
       </div>
-      <LoginComp></LoginComp>
+      <div className={css.containerLogin}>
+        <LoginComp></LoginComp>
+      </div>
     </div>
   );
 }

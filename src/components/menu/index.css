@@ -1,23 +1,36 @@
 .root {
-  height: 100vh;
-  padding: 45px 30px;
   background-color: #42a9d4;
+}
+.containerMenu {
+  height: 100vh;
+  margin: 0 auto;
+  min-width: 200px;
+  max-width: 700px;
+  padding: 45px 30px;
   display: grid;
   grid-template-rows: 1fr 2fr 1fr;
 }
+
 .containerCloseButton {
   height: 20px;
   width: 20px;
   justify-self: end;
   align-self: start;
 }
+
 .containerButtons {
-  margin: 0 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
-  align-self: center;
+  padding: 0 20px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
 }
+@media (min-width: 769px) {
+  .containerButtons {
+    padding: 0 50px;
+  }
+}
+
 .containerLogin {
   min-width: 100px;
   align-self: center;

@@ -1,6 +1,38 @@
 .root {
-  padding: 20px;
+  padding: 0px 20px;
+  padding-bottom: 40px;
 }
-.containerSubtitle {
+
+@media (min-width: 769px) {
+  .root {
+    padding: 0px 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.containerTitle {
+  padding: 35px 0px;
+}
+@media (min-width: 769px) {
+  .containerTitle {
+    padding: 50px 0px;
+    text-align: center;
+  }
+}
+@media (min-width: 1024px) {
+  .containerCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+.containerAskCoords {
   text-align: center;
+  max-width: 730px;
+  margin: 0 auto;
+}
+.containerUbicationButton {
+  max-width: 400px;
+  margin: 35px auto;
 }

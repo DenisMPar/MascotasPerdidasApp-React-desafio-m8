@@ -1,5 +1,4 @@
 import { getMe, getPetData, getPetsAround, getUserPets } from "lib/api";
-import { UserData } from "pages/user-data";
 import { atom, useRecoilValue, selector, useRecoilState } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
@@ -55,7 +54,8 @@ const useGetPetsAround = selector({
 const useGetUserPets = selector({
   key: "useGetUserPets",
   get: async ({ get }) => {
-    const token = localStorage.getItem("auth_token");
+    const data = get(UserState);
+    const token = data.token;
     const pets = await getUserPets(token);
     //si hay mascotas cerca devuevlo el array pets, si no devuelvo false
     //esto es porque si devuelvo el array vacio me lo toma como truthy y no renderiza bien la pagina
@@ -78,6 +78,7 @@ const useGetPetData = selector({
 const petState = atom({
   key: "petState",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 //estado que guarda la key "redirect", para redireccionar al usuario despues del login
 //por defecto lo manda al home

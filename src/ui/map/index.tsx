@@ -6,13 +6,15 @@ import { MyText } from "ui/text";
 import { useRecoilValue } from "recoil";
 import { petState } from "atoms";
 
+const mapToken = process.env.MAPBOX_TOKEN;
+
 const Map = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1IjoiZGVuaXNwYXJhZGEiLCJhIjoiY2t2cmhwbjZlMDM5czJ2cWlyczZoODg4cSJ9.6obRc3i_TK7qdx_A6_y-qg",
+  accessToken: mapToken,
 });
 
 type MapBoxSearchProps = {
   onChange?: (any) => any;
+  type: "publish" | "edit";
 };
 
 function MapboxSearch(props: MapBoxSearchProps) {
@@ -24,11 +26,10 @@ function MapboxSearch(props: MapBoxSearchProps) {
   //lo seteo any porque center map se queja
   const [coords, setCoords] = useState([-58.38162, -34.60376] as any);
 
-  //si hay data de la mascota la guardo en el query y en las coords
-  //esto sirve para mostrar la data anterior cuando quiero editar la mascota
+  //si el map es del tipo edit debo mostrar la data de la mascota que se va a editar
   useEffect(() => {
-    if (petData) {
-      setQuery(petData.zone);
+    if (props.type === "edit") {
+      setQuery(petData?.zone);
       setCoords([petData?.lng, petData?.lat]);
     }
   }, []);

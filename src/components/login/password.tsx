@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAuth } from "hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import { menuRedirectState, UserState, useUserData, useUserEmail } from "atoms";
+import { menuRedirectState, UserState, useUserEmail } from "atoms";
 import { MyTextInput } from "ui/text-field";
 import { MainButton } from "ui/buttons";
 import css from "./index.css";
@@ -23,8 +23,10 @@ export function PasswordComp() {
     if (authRes) {
       const token = localStorage.getItem("auth_token");
       const data = await getMe(token);
-      setUserData({ ...userData, ...data });
-      navigate(menuRedirect);
+      if (data) {
+        setUserData({ ...userData, ...data, token: token });
+        navigate(menuRedirect);
+      }
     } else {
       alert("contraseña incorrecta");
     }

@@ -3,7 +3,7 @@ import img2 from "images/editButton.svg";
 import css from "./index.css";
 import { MyText } from "ui/text";
 import { MainButton } from "ui/buttons";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { petState } from "atoms";
 import { useNavigate } from "react-router";
 
