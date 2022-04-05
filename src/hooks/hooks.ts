@@ -108,17 +108,3 @@ export function useEditPet() {
     editPet,
   };
 }
-export function useLogOut() {
-  function logOut() {
-    const [userData, setUserData] = useRecoilState(UserState);
-    localStorage.removeItem("auth_token");
-    setUserData({
-      location: userData.location,
-    });
-    return true;
-  }
-
-  return {
-    logOut,
-  };
-}

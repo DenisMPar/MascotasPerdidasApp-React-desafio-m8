@@ -24,7 +24,7 @@ export function PasswordComp() {
       const token = localStorage.getItem("auth_token");
       const data = await getMe(token);
       if (data) {
-        setUserData({ ...userData, ...data, token: token });
+        setUserData({ ...userData, ...data });
         navigate(menuRedirect);
       }
     } else {

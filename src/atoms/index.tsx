@@ -54,8 +54,7 @@ const useGetPetsAround = selector({
 const useGetUserPets = selector({
   key: "useGetUserPets",
   get: async ({ get }) => {
-    const data = get(UserState);
-    const token = data.token;
+    const token = localStorage.getItem("auth_token");
     const pets = await getUserPets(token);
     //si hay mascotas cerca devuevlo el array pets, si no devuelvo false
     //esto es porque si devuelvo el array vacio no renderiza bien la pagina

@@ -66,15 +66,18 @@ export function Edit() {
   }
   //funcion que cambia el estado de una mascota a "encontrado"
   function handleReport() {
+    const flag = confirm("¿Desea reportar como encontrado?");
     const body = { condition: "found" };
-    editUserPet({ body, token, id: petData.id }).then((res) => {
-      if (res[0] === 1) {
-        console.log("mascota encontrada");
-        navigate("/user/pets");
-      } else {
-        alert("ups algo salio mal, intenta mas tarde");
-      }
-    });
+    if (flag) {
+      editUserPet({ body, token, id: petData.id }).then((res) => {
+        if (res[0] === 1) {
+          console.log("mascota encontrada");
+          navigate("/user/pets");
+        } else {
+          alert("ups algo salio mal, intenta mas tarde");
+        }
+      });
+    }
   }
   //funcion que elimina una mascota del usuario
   function handleUnpublish() {

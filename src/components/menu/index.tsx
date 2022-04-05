@@ -4,11 +4,12 @@ import css from "./index.css";
 import { MainButton } from "ui/buttons";
 import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { menuRedirectState, UserState } from "atoms";
+import { menuRedirectState, petState, UserState } from "atoms";
 
 export function MainMenu(props) {
   const token = localStorage.getItem("auth_token");
   const [userData, setUserData] = useRecoilState(UserState);
+  const [petData, setPetData] = useRecoilState(petState);
   let navigate = useNavigate();
   const [menuRedirect, setMenuRedirect] = useRecoilState(menuRedirectState);
 
@@ -32,6 +33,7 @@ export function MainMenu(props) {
     setUserData({
       location: userData.location,
     });
+    setPetData(null);
     navigate("/");
   }
   return (
