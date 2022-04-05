@@ -58,7 +58,7 @@ const useGetUserPets = selector({
     const token = data.token;
     const pets = await getUserPets(token);
     //si hay mascotas cerca devuevlo el array pets, si no devuelvo false
-    //esto es porque si devuelvo el array vacio me lo toma como truthy y no renderiza bien la pagina
+    //esto es porque si devuelvo el array vacio no renderiza bien la pagina
     return pets.length > 0 ? pets : false;
   },
 });
