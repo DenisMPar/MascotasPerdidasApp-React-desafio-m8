@@ -19,6 +19,11 @@
     text-align: center;
   }
 }
+.containerCards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
+}
 @media (min-width: 1024px) {
   .containerCards {
     display: grid;

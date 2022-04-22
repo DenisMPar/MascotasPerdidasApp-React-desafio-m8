@@ -1,0 +1,11 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+@media (min-width: 769px) {
+  .form {
+    gap: 35px;
+  }
+}

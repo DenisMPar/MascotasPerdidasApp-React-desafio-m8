@@ -13,6 +13,7 @@ export function PasswordComp() {
   const [userEmail, setUserEmail] = useUserEmail();
   const [userData, setUserData] = useRecoilState(UserState);
   const { login } = useAuth();
+ 
   const menuRedirect = useRecoilValue(menuRedirectState);
 
   async function submitHandler(e) {

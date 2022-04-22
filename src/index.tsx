@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "router/index";
 import { RecoilRoot } from "recoil";
-import { LoaderComp } from "components/loader";
+import { LoaderComp } from "ui/loader";
 
 ReactDOM.render(
   <RecoilRoot>

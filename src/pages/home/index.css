@@ -19,20 +19,3 @@
     text-align: center;
   }
 }
-@media (min-width: 1024px) {
-  .containerCards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-}
-
-.containerAskCoords {
-  text-align: center;
-  max-width: 730px;
-  margin: 0 auto;
-}
-.containerUbicationButton {
-  max-width: 400px;
-  margin: 35px auto;
-}

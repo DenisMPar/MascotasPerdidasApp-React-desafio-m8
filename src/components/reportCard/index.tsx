@@ -1,4 +1,4 @@
-import { LoaderComp } from "components/loader";
+import { LoaderComp } from "ui/loader";
 import { usePetData, useSendPetReport } from "hooks/hooks";
 import React, { useState } from "react";
 import { MainButton } from "ui/buttons";
