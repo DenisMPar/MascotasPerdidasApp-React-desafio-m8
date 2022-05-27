@@ -33,4 +33,9 @@
   border-radius: 4px;
   outline: none;
   color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #6f81ce;
 }

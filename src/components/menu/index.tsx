@@ -45,7 +45,7 @@ export function MainMenu(props) {
             props.onClick();
           }}
         >
-          <img src={img} />
+          <img className={css.imgCloseButton} src={img} />
         </div>
         <div className={css.containerButtons}>
           <MainButton callbackParams={"/user/data"} onClick={handleClick}>

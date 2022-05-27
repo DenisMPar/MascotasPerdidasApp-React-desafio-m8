@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import css from "./index.css";
 
 type buttonProps = {
@@ -10,13 +10,28 @@ type buttonProps = {
   callbackParams?: any;
 };
 
+const colors = {
+  accept: "#7642D4",
+  cancel: "#C7301F",
+  p: "#ca5042",
+};
 export function MainButton(props: buttonProps) {
-  const colors = {
-    accept: "#7642D4",
-    cancel: "#C7301F",
-  };
+  const [buttonColor, setButtonColor] = useState(
+    colors[props.color] || "#485FC7"
+  );
+  function onHover() {
+    console.log("hover");
 
-  const buttonColor = colors[props.color] || "#485FC7";
+    if (props.color == "accept") {
+      return "#8466bb";
+    }
+    if (props.color == "cancel") {
+      return "#ca5042";
+    } else {
+      return "#6f81ce";
+    }
+  }
+
   const className = css.root + " " + props.className;
   if (props.callbackParams) {
     return (
@@ -27,6 +42,8 @@ export function MainButton(props: buttonProps) {
         }
         className={className}
         style={{ backgroundColor: `${buttonColor}` }}
+        onMouseEnter={() => setButtonColor(onHover())}
+        onMouseLeave={() => setButtonColor(colors[props.color] || "#485FC7")}
       >
         {props.children}
       </button>
@@ -38,6 +55,8 @@ export function MainButton(props: buttonProps) {
         onClick={props.onClick ? () => props.onClick() : () => null}
         className={className}
         style={{ backgroundColor: `${buttonColor}` }}
+        onMouseEnter={() => setButtonColor(onHover())}
+        onMouseLeave={() => setButtonColor(colors[props.color] || "#485FC7")}
       >
         {props.children}
       </button>

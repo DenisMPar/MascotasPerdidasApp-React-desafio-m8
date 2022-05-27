@@ -10,4 +10,9 @@
   box-sizing: border-box;
   flex-grow: 1;
   color: white;
+  cursor: pointer;
+}
+
+.root:hover {
+  padding: 5px;
 }

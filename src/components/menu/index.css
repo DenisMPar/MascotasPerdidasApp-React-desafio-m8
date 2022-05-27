@@ -17,6 +17,9 @@
   justify-self: end;
   align-self: start;
 }
+.imgCloseButton {
+  cursor: pointer;
+}
 
 .containerButtons {
   padding: 0 20px;

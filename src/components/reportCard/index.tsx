@@ -49,45 +49,47 @@ export function ReportCard(props) {
   }
   //trigger es un flag para ocultar o mostrar la tarjeta de reporte
   return props.trigger ? (
-    <div className={css.root}>
-      {
-        //loader es un flag para mostrar el componente de carga
-        loader ? (
-          <LoaderComp></LoaderComp>
-        ) : (
-          <div>
-            <div
-              className={css.containerCloseButton}
-              onClick={() => props.setTrigger(false)}
-            >
-              <img src={closeButtonImg} alt="" />
-            </div>
+    <div className={css.background}>
+      <div className={css.root}>
+        {
+          //loader es un flag para mostrar el componente de carga
+          loader ? (
+            <LoaderComp></LoaderComp>
+          ) : (
             <div>
-              <MyText type="title"> Reportar info de {petData.name}</MyText>
-            </div>
-
-            <form className={css.reportForm} onSubmit={handleSubmit}>
-              <MyTextInput
-                label="Tu nombre"
-                type="text"
-                name="name"
-              ></MyTextInput>
-              <MyTextInput
-                label="Tu teléfono"
-                type="text"
-                name="phone"
-              ></MyTextInput>
-              <div className={css.textArea}>
-                <MyTextArea
-                  label="¿Dónde lo viste?"
-                  name="message"
-                ></MyTextArea>
+              <div
+                className={css.containerCloseButton}
+                onClick={() => props.setTrigger(false)}
+              >
+                <img className={css.img} src={closeButtonImg} alt="" />
               </div>
-              <MainButton color="accept">Enviar</MainButton>
-            </form>
-          </div>
-        )
-      }
+              <div>
+                <MyText type="title"> Reportar info de {petData.name}</MyText>
+              </div>
+
+              <form className={css.reportForm} onSubmit={handleSubmit}>
+                <MyTextInput
+                  label="Tu nombre"
+                  type="text"
+                  name="name"
+                ></MyTextInput>
+                <MyTextInput
+                  label="Tu teléfono"
+                  type="text"
+                  name="phone"
+                ></MyTextInput>
+                <div className={css.textArea}>
+                  <MyTextArea
+                    label="¿Dónde lo viste?"
+                    name="message"
+                  ></MyTextArea>
+                </div>
+                <MainButton color="accept">Enviar</MainButton>
+              </form>
+            </div>
+          )
+        }
+      </div>
     </div>
   ) : null;
 }
