@@ -16,6 +16,7 @@
     "react-mapbox-gl": "^5.1.1",
     "react-router-dom": "^6.2.1",
     "react-slick": "^0.28.1",
+    "react-spring": "^9.4.5",
     "recoil": "^0.6.1",
     "recoil-persist": "^4.0.0",
     "source-map-loader": "^3.0.1",

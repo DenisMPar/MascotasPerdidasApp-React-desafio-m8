@@ -16,24 +16,20 @@ export function Layout() {
     setMenuFlag(false);
   }
 
-  if (menuFlag) {
-    //le paso la funcion set flag para que el componente pueda cerrar el menu desde "adentro"
-    return <MainMenu onClick={setFlag}></MainMenu>;
-  } else {
-    return (
-      <div className={css.root}>
-        <header className={css.header}>
-          <Link to="/">
-            <div className={css.containerLogo}>
-              <img src={img} className={css.logo}></img>
-            </div>
-          </Link>
-          <div className={css.containerMenuButton}>
-            <MainButton onClick={handleClick}>Menu</MainButton>
+  return (
+    <div className={css.root}>
+      <header className={css.header}>
+        <Link to="/">
+          <div className={css.containerLogo}>
+            <img src={img} className={css.logo}></img>
           </div>
-        </header>
-        <Outlet />
-      </div>
-    );
-  }
+        </Link>
+        <div className={css.containerMenuButton}>
+          <MainButton onClick={handleClick}>Menu</MainButton>
+        </div>
+      </header>
+      <MainMenu flag={menuFlag} onClick={setFlag}></MainMenu>
+      <Outlet />
+    </div>
+  );
 }
