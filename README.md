@@ -2,10 +2,6 @@
 
 Frontend construido en React para la web de Mascotas Perdidas.
 
-# Link a la web
-
-https://desafio-m8-8e100.web.app/
-
 # Tecnologías usadas
 
 - React
@@ -14,3 +10,9 @@ https://desafio-m8-8e100.web.app/
 - Recoil
 - Mapbox
 - Sendgrid
+
+
+# Link a la web
+
+- https://desafio-m8-8e100.web.app/
+
